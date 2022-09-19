@@ -1,0 +1,5 @@
+- hosts: webservers
+  become: true
+  tasks:
+  - name: Create a file
+    file: path=/home/batch-13.txt state=touch
