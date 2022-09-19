@@ -1,0 +1,17 @@
+---
+ - name: Handlers Example
+   hosts: webservers
+   gather_facts: false
+   tasks:
+     - name: Install httpd latest version
+       yum:
+         name: httpd
+         state: latest
+       become: true
+       notify: restart_httpd
+   handlers:
+     - name: restart_httpd
+       become: true
+       service:
+         name: httpd
+         state: started
